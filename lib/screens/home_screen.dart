@@ -1,5 +1,7 @@
+import 'package:doctor_appointment/screens/hospital_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/hospitals.dart';
+import '../models/doctors.dart';
 
 class HomeScreen extends StatelessWidget {
   // const HomeScreen({Key? key}) : super(key: key);
@@ -39,7 +41,14 @@ class HomeScreen extends StatelessWidget {
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HospitalScreen(
+                                  passedHospital: hospitals[index],
+                                )));
+                  },
                   child: Card(
                     child: Column(
                       children: [
