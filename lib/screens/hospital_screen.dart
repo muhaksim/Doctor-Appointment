@@ -7,7 +7,7 @@ class HospitalScreen extends StatelessWidget {
   // const HospitalScreen({ Key? key }) : super(key: key);
   final Hospitals passedHospital;
   // final Doctors passedDoctors;
-  final doctors = Doctors.giveMeDoctors();
+  // final doctors = Doctors.giveMeDoctors();
 
   HospitalScreen({
     Key? key,
@@ -53,7 +53,7 @@ class HospitalScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => DoctorScreen(
-                                  passedDoctor: doctors[index],
+                                  passedDoctor: passedHospital.doctors[index],
                                 )));
                   },
                   child: Card(
@@ -73,10 +73,10 @@ class HospitalScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '${doctors[index].name}',
+                                '${passedHospital.doctors[index].name}',
                                 style: TextStyle(fontSize: 20),
                               ),
-                              Text('${doctors[index].area}',
+                              Text('${passedHospital.doctors[index].area}',
                                   style: TextStyle(fontSize: 20))
                             ],
                           ),
@@ -86,7 +86,7 @@ class HospitalScreen extends StatelessWidget {
                   ),
                 );
               },
-              itemCount: doctors.length,
+              itemCount: passedHospital.doctors.length,
             ),
           ),
         ],
