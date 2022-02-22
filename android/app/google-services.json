@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1004849638684",
+    "project_id": "sumait-e1975",
+    "storage_bucket": "sumait-e1975.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004849638684:android:40831372557380ac2eded9",
+        "android_client_info": {
+          "package_name": "com.example.sumait"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004849638684-hu2uuftns6f771kj4m5742145k780evj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDf2VBFPbqhe7P1DxWbvsRpYJlyalXNvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004849638684-hu2uuftns6f771kj4m5742145k780evj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

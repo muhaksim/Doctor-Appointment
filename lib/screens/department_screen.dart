@@ -1,17 +1,24 @@
-import 'package:doctor_appointment/screens/department_screen.dart';
+import 'package:doctor_appointment/models/doctors.dart';
+import 'package:doctor_appointment/models/departments.dart';
+import 'package:doctor_appointment/screens/doctor_screen.dart';
 import 'package:flutter/material.dart';
-import '../models/departments.dart';
-import '../models/doctors.dart';
 
-class HomeScreen extends StatelessWidget {
-  // const HomeScreen({Key? key}) : super(key: key);
-  final hospitals = Departments.giveMeDepartments();
+class HospitalScreen extends StatelessWidget {
+  // const HospitalScreen({ Key? key }) : super(key: key);
+  final Departments passedDepartment;
+  // final Doctors passedDoctors;
+  // final doctors = Doctors.giveMeDoctors();
+
+  HospitalScreen({
+    Key? key,
+    required this.passedDepartment,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Soo dhawoow'),
+        title: Text(passedDepartment.name),
       ),
       body: Column(
         children: [
@@ -23,14 +30,13 @@ class HomeScreen extends StatelessWidget {
                     height: 200,
                     width: MediaQuery.of(context).size.width,
                     fit: BoxFit.fill,
-                    image: NetworkImage(
-                        'https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'),
+                    image: NetworkImage(passedDepartment.imageUrl),
                   ),
                   Positioned(
-                      top: 10,
+                      top: 110,
                       left: 30,
                       child: Text(
-                        'BOOK\nNOW!',
+                        '  Qeybta ${passedDepartment.name}',
                         style: TextStyle(
                             fontSize: 35, fontWeight: FontWeight.w900),
                       ))
@@ -45,8 +51,9 @@ class HomeScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => HospitalScreen(
-                                  passedDepartment: hospitals[index],
+                            builder: (context) => DoctorScreen(
+                                  passedDepartment: passedDepartment,
+                                  passedDoctor: passedDepartment.doctors[index],
                                 )));
                   },
                   child: Card(
@@ -56,7 +63,8 @@ class HomeScreen extends StatelessWidget {
                           height: 140,
                           width: MediaQuery.of(context).size.width,
                           fit: BoxFit.fill,
-                          image: NetworkImage(hospitals[index].imageUrl),
+                          image: NetworkImage(
+                              passedDepartment.doctors[index].imageUrl),
                         ),
                         Container(
                           margin: EdgeInsets.only(
@@ -65,12 +73,11 @@ class HomeScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Department: ${hospitals[index].name}',
+                                '${passedDepartment.doctors[index].name}',
                                 style: TextStyle(fontSize: 20),
                               ),
-                              Text(
-                                  'Doctors: ${hospitals[index].numberOfDoctors}',
-                                  style: TextStyle(fontSize: 20))
+                              // Text('${passedDepartment.doctors[index].}',
+                              //     style: TextStyle(fontSize: 20))
                             ],
                           ),
                         )
@@ -79,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               },
-              itemCount: hospitals.length,
+              itemCount: passedDepartment.doctors.length,
             ),
           ),
         ],
@@ -87,14 +94,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-                
-         
-  
-
-// child: Card(
-//                     child: ListTile(
-//                   title: Text(hospitals[index].name),
-//                   subtitle: Text(
-//                       'Doctors: ${hospitals[index].numberOfDoctors.toString()}'),
-//                   trailing: Icon(Icons.arrow_forward_rounded),
-//                 )),

@@ -1,17 +1,23 @@
+import 'package:doctor_appointment/models/departments.dart';
 import 'package:doctor_appointment/models/doctors.dart';
+import 'package:doctor_appointment/screens/form_screen.dart';
+import 'package:doctor_appointment/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class DoctorScreen extends StatelessWidget {
   // const DoctorScreen({Key? key}) : super(key: key);
   final Doctors passedDoctor;
+  final Departments passedDepartment;
 
-  const DoctorScreen({Key? key, required this.passedDoctor}) : super(key: key);
+  const DoctorScreen(
+      {Key? key, required this.passedDoctor, required this.passedDepartment})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('doctor screen'),
+        title: Text('Doctor screen'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,14 +30,13 @@ class DoctorScreen extends StatelessWidget {
                     height: 200,
                     width: MediaQuery.of(context).size.width,
                     fit: BoxFit.fill,
-                    image: NetworkImage(
-                        'https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'),
+                    image: NetworkImage(passedDoctor.imageUrl),
                   ),
                   Positioned(
-                      top: 10,
+                      top: 110,
                       left: 30,
                       child: Text(
-                        'Welcome to ${passedDoctor.name}\'s section',
+                        'Dr. ${passedDoctor.name}',
                         style: TextStyle(
                             fontSize: 35, fontWeight: FontWeight.w900),
                       )),
@@ -42,25 +47,42 @@ class DoctorScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 20,
+                ),
                 Text(
                   'Description',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Text(
                   '${passedDoctor.description}',
                   style: TextStyle(fontSize: 23),
-                )
+                ),
               ],
             ),
+          ),
+          SizedBox(
+            height: 30,
           ),
           Container(
               width: double.infinity,
               height: 60,
               margin: EdgeInsets.all(20),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FormScreen(
+                                  department: passedDepartment.name,
+                                  doctor: passedDoctor.name,
+                                )));
+                  },
                   child: Text(
-                    'Book Now',
+                    'Qabso Balan',
                     style: TextStyle(fontSize: 30),
                   )))
         ],
